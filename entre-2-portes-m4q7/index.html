@@ -61,6 +61,22 @@ footer .logo+p{margin-top:1rem}
 .btn svg{width:18px;height:18px;flex:none}
 .nav .btn{padding:.55rem 1.1rem;font-size:.95rem}
 
+.burger{display:none;width:44px;height:44px;background:none;border:0;cursor:pointer;position:relative;color:var(--or);margin-left:auto}
+.burger span{position:absolute;left:11px;right:11px;height:1.5px;background:currentColor;transition:transform .3s,opacity .2s}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:27px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media (max-width:960px){
+  .burger{display:block}
+  .nav{position:relative}
+  .nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bleu);border-top:1px solid rgba(200,164,106,.25);border-bottom:1px solid rgba(200,164,106,.35);padding:.5rem var(--pad) 1rem}
+  .nav ul.ouvert{display:flex}
+  .nav ul a{display:block;padding:.9rem 0;font-size:1.15rem;border-bottom:1px solid rgba(236,229,218,.08)}
+  .nav ul li:last-child a{border-bottom:0}
+  .nav .btn{margin-left:.5rem}
+}
+
 /* hero : les deux portes */
 .hero{background:var(--bleu);color:var(--pierre);overflow:hidden;position:relative;display:flex;flex-direction:column;min-height:calc(100vh - var(--top,106px));min-height:calc(100svh - var(--top,106px))}
 .hero-scene{flex:1;width:100%;position:relative;display:grid;grid-template-columns:1fr minmax(0,640px) 1fr;align-items:end;max-width:1400px;margin:0 auto;padding:clamp(1.5rem,5vh,5rem) var(--pad) 0}
@@ -206,7 +222,6 @@ footer a{color:var(--or)}
 .appel-mobile{display:none}
 
 @media (max-width:960px){
-  .nav ul{display:none}
   .hero-scene{grid-template-columns:1fr;padding-top:2.5rem}
   .porte{display:none}
   .intro,.rhums,.maison-grid,.vendredi-grid,.venir,.avis-grid{grid-template-columns:1fr}
@@ -241,7 +256,8 @@ footer a{color:var(--or)}
 <header>
   <nav class="wrap nav" aria-label="Navigation principale">
     <a class="logo" href="#top" aria-label="L'entre 2 portes, accueil"><svg class="logo-mark" aria-hidden="true" viewBox="0 0 56 44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M2.5 15 L8 5 L13.5 15 Z"/><path d="M3.5 15 V41 M12.5 15 V41"/><path d="M42.5 15 L48 5 L53.5 15 Z"/><path d="M43.5 15 V41 M52.5 15 V41"/><path d="M8 22 V27"/><path d="M48 22 V27"/><path d="M17 41 V26 A11 11 0 0 1 39 26 V41"/><path d="M1 41 H55"/><text x="28" y="34.5" text-anchor="middle" fill="currentColor" stroke="none" font-family="Jost, sans-serif" font-weight="400" font-size="17">2</text></svg><span class="logo-t"><span class="logo-n">L'entre 2 portes</span><span class="logo-s">Moret-sur-Loing</span></span></a>
-    <ul>
+    <button type="button" class="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+    <ul id="menu">
       <li><a href="#cuisine">Cuisine</a></li>
       <li><a href="#maison">La maison</a></li>
       <li><a href="#carte">La carte</a></li>
@@ -538,6 +554,13 @@ footer a{color:var(--or)}
 </script>
 <script>
 (function(){var r=document.querySelector('.horaires tr[data-j="'+new Date().getDay()+'"]');if(r)r.classList.add('auj')})();
+</script>
+<script>
+(function(){var b=document.querySelector('.burger'),m=document.getElementById('menu');if(!b)return;
+function set(o){b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Fermer le menu':'Ouvrir le menu');m.classList.toggle('ouvert',o)}
+b.addEventListener('click',function(){set(b.getAttribute('aria-expanded')!=='true')});
+m.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});})();
 </script>
 </body>
 </html>
