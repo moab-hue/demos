@@ -176,7 +176,7 @@ figcaption{font-size:.9rem;margin-top:.6rem;color:#555a73}
 .plan .lbl.doux{fill:#8a90a6;font-style:italic}
 .plan .num{font-family:var(--texte);font-size:20px;fill:var(--bleu)}
 .plan-legende{display:none;margin-top:1rem;color:#c9ccd6;font-size:.95rem}
-.venir{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:2.5rem;margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid rgba(200,164,106,.3)}
+.venir{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:2.5rem;margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid rgba(200,164,106,.3)}
 .venir h3{font-size:1.05rem;font-weight:500;letter-spacing:.04em;color:var(--or);margin-bottom:.75rem}
 .venir p{color:#d5d7e0}
 .tel{font-family:var(--display);font-weight:300;font-size:clamp(2rem,4vw,2.8rem);text-decoration:none;color:var(--pierre);letter-spacing:.02em;line-height:1.1}
@@ -185,6 +185,16 @@ figcaption{font-size:.9rem;margin-top:.6rem;color:#555a73}
 .lien.fb{display:inline-flex;align-items:center;gap:.45rem}
 .lien.fb svg{width:18px;height:18px;flex:none}
 .ven-cta .lien{margin-top:0}
+.horaires{border-collapse:collapse;width:100%;max-width:26rem;font-variant-numeric:tabular-nums;font-size:.95rem;color:#d5d7e0}
+.horaires thead th{font-weight:400;font-size:.8rem;letter-spacing:.08em;color:#8a90a6;text-align:left;padding:0 0 .4rem}
+.horaires th[scope=row]{font-weight:400;text-align:left;padding:.32rem 1rem .32rem 0;color:var(--pierre)}
+.horaires td{padding:.32rem 1rem .32rem 0;white-space:nowrap}
+.horaires tbody tr{border-top:1px solid rgba(236,229,218,.08)}
+.horaires tr.ferme td,.horaires tr.ferme th{color:#6f7590}
+.horaires tr.auj th,.horaires tr.auj td{color:var(--or)}
+.horaires tr.auj th::after{content:" (aujourd'hui)";font-size:.8em;opacity:.8}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.horaires+.lien{margin-top:1.25rem}
 .a-confirmer{display:inline-block;font-size:.9rem;background:rgba(200,164,106,.25);color:var(--pierre);padding:.15rem .6rem;border-radius:3px}
 
 footer{background:var(--bleu-nuit);color:#cfcde0;padding:3rem 0 6rem;font-size:.92rem}
@@ -415,7 +425,7 @@ footer a{color:var(--or)}
         <h2>Le vendredi soir, la terrasse passe aux chandelles</h2>
         <p>Chaque vendredi, la terrasse de la rue Grande se dresse en nappes blanches et s'éclaire à la bougie. Un dîner chaleureux et raffiné, au pied des vieilles pierres de Moret.</p>
         <p>Le nombre de places est limité : pensez à réserver votre table.</p>
-        <div class="ven-cta"><a class="btn btn-or" href="tel:+33164326153">Réserver pour vendredi</a><a class="lien fb" href="https://www.facebook.com/ilizio.humberto/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21h2.9z"/></svg>Les soirées annoncées sur Facebook</a></div>
+        <div class="ven-cta"><a class="btn btn-or" href="tel:+33164326153">Réserver pour vendredi</a><a class="lien fb" href="https://www.facebook.com/ilizio.humberto/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21h2.9z"/></svg>Suivre les soirées sur Facebook</a></div>
       </div>
     </div>
   </section>
@@ -453,8 +463,19 @@ footer a{color:var(--or)}
         </div>
         <div>
           <h3>Horaires</h3>
-          <p><span class="a-confirmer">À compléter avec vous</span></p>
-          <a class="lien fb" href="https://www.facebook.com/ilizio.humberto/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21h2.9z"/></svg>Suggestions et actus sur Facebook</a>
+          <table class="horaires">
+            <thead><tr><th scope="col"><span class="sr">Jour</span></th><th scope="col">Midi</th><th scope="col">Soir</th></tr></thead>
+            <tbody>
+              <tr data-j="1"><th scope="row">Lundi</th><td>12h30 – 14h30</td><td>19h30 – 22h00</td></tr>
+              <tr data-j="2" class="ferme"><th scope="row">Mardi</th><td colspan="2">Fermé</td></tr>
+              <tr data-j="3" class="ferme"><th scope="row">Mercredi</th><td colspan="2">Fermé</td></tr>
+              <tr data-j="4"><th scope="row">Jeudi</th><td>12h30 – 14h30</td><td>19h30 – 22h00</td></tr>
+              <tr data-j="5"><th scope="row">Vendredi</th><td>12h30 – 14h30</td><td>19h30 – 22h00</td></tr>
+              <tr data-j="6"><th scope="row">Samedi</th><td>12h30 – 14h30</td><td>19h30 – 22h30</td></tr>
+              <tr data-j="0"><th scope="row">Dimanche</th><td>12h30 – 14h30</td><td>Fermé le soir</td></tr>
+            </tbody>
+          </table>
+          <a class="lien fb" href="https://www.facebook.com/ilizio.humberto/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21h2.9z"/></svg>Suivre le restaurant sur Facebook</a>
         </div>
       </div>
     </div>
@@ -514,6 +535,9 @@ footer a{color:var(--or)}
   init();requestAnimationFrame(init);addEventListener('load',init);
   if(document.fonts)document.fonts.ready.then(init);
 })();
+</script>
+<script>
+(function(){var r=document.querySelector('.horaires tr[data-j="'+new Date().getDay()+'"]');if(r)r.classList.add('auj')})();
 </script>
 </body>
 </html>
